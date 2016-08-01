@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Carcel\Bundle\UserBundle
+        psr4_prefix: Carcel\Bundle\UserBundle
+        src_path: src/

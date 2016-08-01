@@ -1,0 +1,7 @@
+services:
+    carcel_user.factory.user_form:
+        class: Carcel\Bundle\UserBundle\Form\Factory\UserFormFactory
+        arguments:
+            - '@form.factory'
+            - '@router'
+            - '@translator'

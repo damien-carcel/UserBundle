@@ -1,0 +1,52 @@
+carcel_user:
+    account.remove: Account deletion
+    admin:
+        edit.title: Edit user %name% profile
+        index:
+            action: Action
+            change_role: Change role
+            edit: Edit
+            list: List of the users
+            name: Name
+            role: Role
+            title: Adminitration of the users
+            view: View
+        set_role.title: Change user %name% role
+        show.title: %name% user profile
+    button:
+        back: Back
+        change: Change
+        delete: Delete
+        update: Update
+    change_password:
+        title: Change user %name% password
+    form:
+        name.label: User name
+        email.label: Email address
+    mail:
+        content:
+            remove: |
+                Hello %username%.
+
+                Your user account is now removed.
+
+                Have a good day.
+    notice:
+        delete:
+            confirmation: Are you sure?
+            label: The user has been deleted
+        set_role: User role has been changed
+        update: User profile has been updated
+    profile:
+        show: %username% user profile
+        edit: Edit %username% user profile
+        edit.link: Edit profile
+        password.link: Change password
+    security:
+        forgotten_password: Forgotten password?
+        new_user: New user
+        no_role: Sorry, your acount has no role for the moment. Wait for a confirmation mail.
+
+ROLE_USER: Base user
+ROLE_ADMIN: Administrator
+ROLE_SUPER_ADMIN: Super administrator

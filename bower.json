@@ -1,0 +1,15 @@
+{
+    "name": "user-bundle",
+    "homepage": "https://github.com/damien-carcel/UserBundle",
+    "authors": [
+        {
+            "name": "Damien Carcel",
+            "homepage": "https://github.com/damien-carcel/"
+        }
+    ],
+    "description": "",
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "~3.3.6"
+    }
+}

@@ -1,0 +1,17 @@
+parameters:
+    carcel_user_mailer_address: noresponse@example.info
+
+services:
+    carcel_user.manager.mail:
+        class: Carcel\Bundle\UserBundle\Manager\MailManager
+        arguments:
+            - '@templating'
+            - '@mailer'
+            - '@translator'
+            - '%carcel_user_mailer_address%'
+
+    carcel_user.manager.roles:
+        class: Carcel\Bundle\UserBundle\Manager\RolesManager
+        arguments:
+            - '@translator'
+            - '%security.role_hierarchy.roles%'
