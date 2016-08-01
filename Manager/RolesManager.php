@@ -37,6 +37,7 @@ class RolesManager
      */
     public function getChoices()
     {
+        $choices = [];
         $choices['ROLE_USER'] = 'ROLE_USER';
 
         $roles = array_keys($this->roles);
