@@ -138,10 +138,11 @@ bin/console cache:clear
 
 ## Update the database schema
 
-Run the following command:
+Run the following commands to create the database table and populate it with minimal fixture set:
 
 ```bash
 bin/console doctrine:schema:update --force
+bin/console doctrine:fixtures:load
 ```
 
 ## Deploy the assets
