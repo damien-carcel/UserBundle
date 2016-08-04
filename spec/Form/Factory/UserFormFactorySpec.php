@@ -139,11 +139,12 @@ class UserFormFactorySpec extends ObjectBehavior
     ) {
         $formFactory->createBuilder()->willReturn($builder);
         $translator->trans('carcel_user.button.change')->willReturn('Change');
+        $translator->trans('carcel_user.form.role.label')->willReturn('Roles');
 
         $builder
             ->add('roles', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
                 'choices' => ['role1', 'role2', 'role3'],
-                'label'   => false,
+                'label'   => 'Roles',
                 'data'    => 'role1',
             ])
             ->willReturn($builder);

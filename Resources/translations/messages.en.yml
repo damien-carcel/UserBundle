@@ -9,10 +9,11 @@ carcel_user:
             list: List of the users
             name: Name
             role: Role
-            title: Adminitration of the users
+            title: Administration of the users
             view: View
+        footer_link: Administration page
         set_role.title: Change user %name% role
-        show.title: %name% user profile
+        show.title: '%name% user profile'
     button:
         back: Back
         change: Change
@@ -23,6 +24,7 @@ carcel_user:
     form:
         name.label: User name
         email.label: Email address
+        role.label: Roles
     mail:
         content:
             remove: |
@@ -38,7 +40,7 @@ carcel_user:
         set_role: User role has been changed
         update: User profile has been updated
     profile:
-        show: %username% user profile
+        show: '%username% user profile'
         edit: Edit %username% user profile
         edit.link: Edit profile
         password.link: Change password

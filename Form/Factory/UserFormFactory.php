@@ -129,7 +129,7 @@ class UserFormFactory implements UserFormFactoryInterface
                 ChoiceType::class,
                 [
                     'choices' => $choices,
-                    'label'   => false,
+                    'label'   => $this->translator->trans('carcel_user.form.role.label'),
                     'data'    => $currentRole,
                 ]
             )

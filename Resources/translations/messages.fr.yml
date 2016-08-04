@@ -9,8 +9,9 @@ carcel_user:
             list: Liste des utilisateurs
             name: Nom
             role: Rôle
-            title: Adminitration des utilisateurs
+            title: Administration des utilisateurs
             view: Visualiser
+        footer_link: Page d'administration
         set_role.title: Changement du rôle de l'utilisateur %name%
         show.title: Profil de l'utilisateur %name%
     button:
@@ -23,6 +24,7 @@ carcel_user:
     form:
         name.label: Nom d'utilisateur
         email.label: Adresse e-mail
+        role.label: Roles
     mail:
         content:
             remove: |
