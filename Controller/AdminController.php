@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of CarcelUserBundle.
+ *
+ * Copyright (c) 2016 Damien Carcel <damien.carcel@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carcel\Bundle\UserBundle\Controller;
 
 use Carcel\Bundle\UserBundle\Entity\Repository\UserRepositoryInterface;
@@ -14,9 +23,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Global administration of the application users.
  *
- * @author    Damien Carcel (damien.carcel@gmail.com)
- * @copyright 2016 Damien Carcel (https://github.com/damien-carcel)
- * @license   https://opensource.org/licenses/mit   The MIT license (MIT)
+ * @author Damien Carcel (damien.carcel@gmail.com)
  */
 class AdminController extends Controller
 {

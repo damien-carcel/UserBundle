@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of CarcelUserBundle.
+ *
+ * Copyright (c) 2016 Damien Carcel <damien.carcel@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carcel\Bundle\UserBundle\Form\Factory;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -12,9 +21,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Creates forms for User entity.
  *
- * @author    Damien Carcel (damien.carcel@gmail.com)
- * @copyright 2016 Damien Carcel (https://github.com/damien-carcel)
- * @license   https://opensource.org/licenses/mit   The MIT license (MIT)
+ * @author Damien Carcel (damien.carcel@gmail.com)
  */
 class UserFormFactory implements UserFormFactoryInterface
 {
