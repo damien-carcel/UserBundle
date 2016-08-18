@@ -53,7 +53,7 @@ class UserManagerSpec extends ObjectBehavior
         $tokenStorage->getToken()->willReturn($token);
         $token->getUser()->willReturn($currentUser);
 
-        $currentUser->hasRole('ROLE_SUPER_ADMIN')->willReturn(false);
+        $currentUser->isSuperAdmin()->willReturn(false);
         $userRepository->findByRole('ROLE_SUPER_ADMIN')->willReturn([$superAdmin]);
         $userRepository->findAllBut([$currentUser, $superAdmin])->willReturn([$regularUser]);
 
@@ -78,7 +78,7 @@ class UserManagerSpec extends ObjectBehavior
         $tokenStorage->getToken()->willReturn($token);
         $token->getUser()->willReturn($currentUser);
 
-        $currentUser->hasRole('ROLE_SUPER_ADMIN')->willReturn(true);
+        $currentUser->isSuperAdmin()->willReturn(true);
         $userRepository->findByRole()->shouldNotBeCalled();
         $userRepository->findAllBut([$currentUser])->willReturn([$regularAdmin, $regularUser]);
 

@@ -5,9 +5,10 @@ services:
     carcel_user.manager.mail:
         class: Carcel\Bundle\UserBundle\Manager\MailManager
         arguments:
-            - '@templating'
             - '@mailer'
+            - '@templating'
             - '@translator'
+            - '@carcel_user.factory.swift_message'
             - '%carcel_user_mailer_address%'
 
     carcel_user.manager.roles:

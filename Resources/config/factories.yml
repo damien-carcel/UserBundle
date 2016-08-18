@@ -1,0 +1,3 @@
+services:
+    carcel_user.factory.swift_message:
+        class: Carcel\Bundle\UserBundle\Factory\SwiftMessageFactory

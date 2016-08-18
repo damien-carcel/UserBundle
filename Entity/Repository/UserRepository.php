@@ -12,7 +12,6 @@
 namespace Carcel\Bundle\UserBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User repository.

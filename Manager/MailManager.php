@@ -11,6 +11,7 @@
 
 namespace Carcel\Bundle\UserBundle\Manager;
 
+use Carcel\Bundle\UserBundle\Factory\SwiftMessageFactory;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -21,11 +22,14 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class MailManager
 {
+    /** @var \Swift_Mailer */
+    protected $mailer;
+
     /** @var string */
     protected $mailerAddress;
 
-    /** @var \Swift_Mailer */
-    protected $mailer;
+    /** @var SwiftMessageFactory */
+    protected $messageFactory;
 
     /** @var EngineInterface */
     protected $templating;
@@ -34,20 +38,23 @@ class MailManager
     protected $translator;
 
     /**
-     * @param EngineInterface     $templating
      * @param \Swift_Mailer       $mailer
+     * @param EngineInterface     $templating
      * @param TranslatorInterface $translator
+     * @param SwiftMessageFactory $messageFactory
      * @param string              $mailerAddress
      */
     public function __construct(
-        EngineInterface $templating,
         \Swift_Mailer $mailer,
+        EngineInterface $templating,
         TranslatorInterface $translator,
+        SwiftMessageFactory $messageFactory,
         $mailerAddress
     ) {
         $this->templating = $templating;
         $this->mailer = $mailer;
         $this->translator = $translator;
+        $this->messageFactory = $messageFactory;
         $this->mailerAddress = $mailerAddress;
     }
 
@@ -61,7 +68,7 @@ class MailManager
      */
     public function send($email, $username)
     {
-        $message = \Swift_Message::newInstance();
+        $message = $this->messageFactory->create();
         $message
             ->setSubject($this->translator->trans('carcel_user.account.remove'))
             ->setFrom($this->mailerAddress)

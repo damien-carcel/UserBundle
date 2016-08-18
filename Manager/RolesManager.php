@@ -44,15 +44,10 @@ class RolesManager
      */
     public function getChoices()
     {
-        $choices = [];
-        $choices['ROLE_USER'] = 'ROLE_USER';
+        $choices = $this->getFlatRoles();
 
-        $roles = array_keys($this->roles);
-
-        foreach ($roles as $role) {
-            if ($role !== 'ROLE_SUPER_ADMIN') {
-                $choices[$role] = $role;
-            }
+        if (isset($choices['ROLE_SUPER_ADMIN'])) {
+            unset($choices['ROLE_SUPER_ADMIN']);
         }
 
         return $choices;
@@ -67,15 +62,48 @@ class RolesManager
      */
     public function getUserRole(UserInterface $user)
     {
+        $currentRole = '';
         $userRoles = $user->getRoles();
 
-        $currentRole = '';
-        foreach ($this->roles as $role) {
-            if ($role[0] === $userRoles[0]) {
-                $currentRole = $role[0];
-            }
+        if (in_array($userRoles[0], $this->getFlatRoles())) {
+            $currentRole = $userRoles[0];
         }
 
         return $currentRole;
+    }
+
+    /**
+     * Returns a simple list of roles.
+     *
+     * Transform the "security.role_hierarchy.roles" parameter:
+     *
+     * [
+     *      'ROLE_ADMIN'       => ['ROLE_USER'],
+            'ROLE_SUPER_ADMIN' => ['ROLE_ADMIN'],
+     * ]
+     *
+     * into:
+     *
+     * ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
+     *
+     * @return string[]
+     */
+    protected function getFlatRoles()
+    {
+        $choices = [];
+
+        foreach ($this->roles as $key => $roles) {
+            foreach ($roles as $role) {
+                if (!isset($choices[$role])) {
+                    $choices[$role] = $role;
+                }
+            }
+
+            if (!isset($choices[$key])) {
+                $choices[$key] = $key;
+            }
+        }
+
+        return $choices;
     }
 }

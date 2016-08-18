@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * User manager.
+ *
  * @author Damien Carcel (damien.carcel@gmail.com)
  */
 class UserManager
@@ -48,7 +50,7 @@ class UserManager
         $currentUser = $this->tokenStorage->getToken()->getUser();
         $users[] = $currentUser;
 
-        if (!$currentUser->hasRole('ROLE_SUPER_ADMIN')) {
+        if (!$currentUser->isSuperAdmin()) {
             $superAdmin = $this->userRepository->findByRole('ROLE_SUPER_ADMIN');
             $users = array_merge($users, $superAdmin);
         }
