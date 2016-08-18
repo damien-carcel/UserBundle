@@ -24,12 +24,32 @@ class UserRepository extends EntityRepository implements UserRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findAllBut(UserInterface $user)
+    public function findAllBut(array $users)
+    {
+        $userNames = [];
+
+        foreach ($users as $user) {
+            $userNames[] = $user->getUsername();
+        }
+
+        $queryBuilder = $this->createQueryBuilder('u');
+
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->notIn('u.username', $userNames))
+            ->orderBy('u.username')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findByRole($role)
     {
         $query = $this->createQueryBuilder('u')
-            ->where('u.username != :username')
-            ->setParameter('username', $user->getUsername())
-            ->orderBy('u.username')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%"'.$role.'"%')
             ->getQuery();
 
         return $query->getResult();

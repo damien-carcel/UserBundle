@@ -24,9 +24,18 @@ interface UserRepositoryInterface extends ObjectRepository
     /**
      * Retrieves all users but one.
      *
-     * @param UserInterface $user The user we don\'t want to be returned.
+     * @param UserInterface[] $users The users we don\'t want to be returned.
      *
      * @return UserInterface[]
      */
-    public function findAllBut(UserInterface $user);
+    public function findAllBut(array $users);
+
+    /**
+     * Retrieves all users having a specific role.
+     *
+     * @param string $role
+     *
+     * @return UserInterface[]
+     */
+    public function findByRole($role);
 }
