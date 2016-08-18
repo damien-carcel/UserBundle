@@ -11,8 +11,12 @@
 
 namespace spec\Carcel\Bundle\UserBundle\Form\Factory;
 
+use Carcel\Bundle\UserBundle\Form\Factory\UserFormFactory;
+use Carcel\Bundle\UserBundle\Form\Factory\UserFormFactoryInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -36,12 +40,12 @@ class UserFormFactorySpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Carcel\Bundle\UserBundle\Form\Factory\UserFormFactory');
+        $this->shouldHaveType(UserFormFactory::class);
     }
 
     function it_is_a_user_form_factory()
     {
-        $this->shouldImplement('Carcel\Bundle\UserBundle\Form\Factory\UserFormFactoryInterface');
+        $this->shouldImplement(UserFormFactoryInterface::class);
     }
 
     function it_creates_a_create_form(
@@ -95,7 +99,7 @@ class UserFormFactorySpec extends ObjectBehavior
         $builder->setAction('user/delete')->willReturn($builder);
         $builder->setMethod('DELETE')->willReturn($builder);
         $builder
-            ->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', [
+            ->add('submit', SubmitType::class, [
                 'label' => 'Delete',
                 'attr'  => [
                     'class'   => 'btn btn-sm btn-default',
@@ -128,7 +132,7 @@ class UserFormFactorySpec extends ObjectBehavior
         $builder->setAction('user/delete')->willReturn($builder);
         $builder->setMethod('DELETE')->willReturn($builder);
         $builder
-            ->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', [
+            ->add('submit', SubmitType::class, [
                 'label' => 'Delete',
                 'attr'  => [
                     'class'   => 'btn btn-sm btn-default',
@@ -154,7 +158,7 @@ class UserFormFactorySpec extends ObjectBehavior
         $translator->trans('carcel_user.form.role.label')->willReturn('Roles');
 
         $builder
-            ->add('roles', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', [
+            ->add('roles', ChoiceType::class, [
                 'choices' => ['role1', 'role2', 'role3'],
                 'label'   => 'Roles',
                 'data'    => 'role1',
@@ -162,7 +166,7 @@ class UserFormFactorySpec extends ObjectBehavior
             ->willReturn($builder);
 
         $builder
-            ->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', ['label' => 'Change'])
+            ->add('submit', SubmitType::class, ['label' => 'Change'])
             ->willReturn($builder);
 
         $builder->getForm()->willReturn($form);

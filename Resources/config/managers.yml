@@ -15,3 +15,9 @@ services:
         arguments:
             - '@translator'
             - '%security.role_hierarchy.roles%'
+
+    carcel_user.manager.users:
+        class: Carcel\Bundle\UserBundle\Manager\UserManager
+        arguments:
+            - '@security.token_storage'
+            - '@doctrine.orm.entity_manager'

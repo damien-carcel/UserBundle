@@ -34,7 +34,7 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        $users = $this->getUsersToDisplay();
+        $users = $this->get('carcel_user.manager.users')->getAdministrableUsers();
         $deleteForms = $this->getUserFormFactory()->createDeleteFormViews($users, 'carcel_user_admin_remove');
 
         return $this->render(
@@ -192,27 +192,6 @@ class AdminController extends Controller
         }
 
         return $this->redirect($this->generateUrl('carcel_user_admin_index'));
-    }
-
-    /**
-     * Returns a list of all the application users, except the current user,
-     * and the super administrator is current user is a regular admin.
-     *
-     * @return UserInterface[]
-     */
-    protected function getUsersToDisplay()
-    {
-        $users = [];
-
-        $currentUser = $this->getUser();
-        $users[] = $currentUser;
-
-        if (!$currentUser->hasRole('ROLE_SUPER_ADMIN')) {
-            $superAdmin = $this->getUserRepository()->findByRole('ROLE_SUPER_ADMIN');
-            $users = array_merge($users, $superAdmin);
-        }
-
-        return $this->getUserRepository()->findAllBut($users);
     }
 
     /**
