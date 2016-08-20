@@ -11,6 +11,7 @@
 
 namespace Carcel\Bundle\UserBundle\Form\Factory;
 
+use Carcel\Bundle\UserBundle\Manager\RolesManager;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -28,6 +29,9 @@ class UserFormFactory implements UserFormFactoryInterface
     /** @var FormFactoryInterface */
     protected $formFactory;
 
+    /** @var RolesManager */
+    protected $rolesManager;
+
     /** @var RouterInterface */
     protected $router;
 
@@ -38,15 +42,18 @@ class UserFormFactory implements UserFormFactoryInterface
      * @param FormFactoryInterface $formFactory
      * @param RouterInterface      $router
      * @param TranslatorInterface  $translator
+     * @param RolesManager         $rolesManager
      */
     public function __construct(
         FormFactoryInterface $formFactory,
         RouterInterface $router,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        RolesManager $rolesManager
     ) {
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->translator = $translator;
+        $this->rolesManager = $rolesManager;
     }
 
     /**
@@ -127,7 +134,7 @@ class UserFormFactory implements UserFormFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createSetRoleForm(array $choices, $currentRole)
+    public function createSetRoleForm($currentRole)
     {
         $form = $this->formFactory
             ->createBuilder()
@@ -135,7 +142,7 @@ class UserFormFactory implements UserFormFactoryInterface
                 'roles',
                 ChoiceType::class,
                 [
-                    'choices' => $choices,
+                    'choices' => $this->rolesManager->getChoices(),
                     'label'   => $this->translator->trans('carcel_user.form.role.label'),
                     'data'    => $currentRole,
                 ]

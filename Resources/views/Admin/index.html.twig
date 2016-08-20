@@ -37,7 +37,9 @@
                     <td class="col-lg-8">
                         <a class="btn btn-sm btn-default" href="{{ path('carcel_user_admin_show', { 'username': user.username }) }}">{{ 'carcel_user.admin.index.view'|trans }}</a>
                         <a class="btn btn-sm btn-default" href="{{ path('carcel_user_admin_edit', { 'username': user.username }) }}">{{ 'carcel_user.admin.index.edit'|trans }}</a>
-                        <a class="btn btn-sm btn-default" href="{{ path('carcel_user_admin_set_role', { 'username': user.username }) }}">{{ 'carcel_user.admin.index.change_role'|trans }}</a>
+                        {% if not user.hasRole('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                            <a class="btn btn-sm btn-default" href="{{ path('carcel_user_admin_set_role', { 'username': user.username }) }}">{{ 'carcel_user.admin.index.change_role'|trans }}</a>
+                        {% endif %}
                         {{ form(delete_form, { 'attr': {'class': 'button-inline'}}) }}
                     </td>
                 </tr>

@@ -37,6 +37,13 @@ class LoadUserData implements FixtureInterface
             'enabled'  => true,
         ],
         [
+            'username' => 'freya',
+            'password' => 'freya',
+            'email'    => 'freya@userbundle.info',
+            'role'     => 'ROLE_ADMIN',
+            'enabled'  => true,
+        ],
+        [
             'username' => 'damien',
             'password' => 'damien',
             'email'    => 'damien@userbundle.info',

@@ -14,6 +14,8 @@ namespace spec\Carcel\Bundle\UserBundle\Manager;
 use Carcel\Bundle\UserBundle\Manager\RolesManager;
 use FOS\UserBundle\Model\UserInterface;
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -21,9 +23,10 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class RolesManagerSpec extends ObjectBehavior
 {
-    function let(TranslatorInterface $translator)
+    function let(TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
     {
         $this->beConstructedWith(
+            $tokenStorage,
             $translator,
             [
                 'ROLE_EDITOR'      => ['ROLE_USER'],
@@ -38,8 +41,52 @@ class RolesManagerSpec extends ObjectBehavior
         $this->shouldHaveType(RolesManager::class);
     }
 
-    function it_returns_the_list_of_roles_without_super_admin_one()
+    function it_returns_the_list_of_roles_for_the_super_admin(
+        $tokenStorage,
+        TokenInterface $token,
+        UserInterface $currentUser
+    ) {
+        $tokenStorage->getToken()->willReturn($token);
+        $token->getUser()->willReturn($currentUser);
+        $currentUser->isSuperAdmin()->willReturn(true);
+
+        $this->getChoices()->shouldReturn([
+            'ROLE_USER'   => 'ROLE_USER',
+            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_ADMIN'  => 'ROLE_ADMIN',
+        ]);
+    }
+
+    function it_returns_the_list_of_roles_for_regular_admin(
+        $tokenStorage,
+        TokenInterface $token,
+        UserInterface $currentUser
+    ) {
+        $tokenStorage->getToken()->willReturn($token);
+        $token->getUser()->willReturn($currentUser);
+        $currentUser->isSuperAdmin()->willReturn(false);
+
+        $this->getChoices()->shouldReturn([
+            'ROLE_USER'   => 'ROLE_USER',
+            'ROLE_EDITOR' => 'ROLE_EDITOR',
+        ]);
+    }
+
+    function it_returns_the_list_of_roles_for_anonymous_user($tokenStorage, TokenInterface $token)
     {
+        $tokenStorage->getToken()->willReturn($token);
+        $token->getUser()->willReturn('anonymous');
+
+        $this->getChoices()->shouldReturn([
+            'ROLE_USER'   => 'ROLE_USER',
+            'ROLE_EDITOR' => 'ROLE_EDITOR',
+        ]);
+    }
+
+    function it_returns_the_list_of_roles_from_command_line($tokenStorage)
+    {
+        $tokenStorage->getToken()->willReturn(null);
+
         $this->getChoices()->shouldReturn([
             'ROLE_USER'   => 'ROLE_USER',
             'ROLE_EDITOR' => 'ROLE_EDITOR',

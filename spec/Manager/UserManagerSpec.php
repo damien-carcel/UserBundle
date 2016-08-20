@@ -13,10 +13,13 @@ namespace spec\Carcel\Bundle\UserBundle\Manager;
 
 use Carcel\Bundle\UserBundle\Entity\Repository\UserRepositoryInterface;
 use Carcel\Bundle\UserBundle\Entity\User;
+use Carcel\Bundle\UserBundle\Manager\RolesManager;
 use Carcel\Bundle\UserBundle\Manager\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserInterface;
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -25,9 +28,9 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 class UserManagerSpec extends ObjectBehavior
 {
-    function let(TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
+    function let(TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager, RolesManager $rolesManager)
     {
-        $this->beConstructedWith($tokenStorage, $entityManager, User::class);
+        $this->beConstructedWith($tokenStorage, $entityManager, $rolesManager);
     }
 
     function it_is_initializable()
@@ -83,5 +86,40 @@ class UserManagerSpec extends ObjectBehavior
         $userRepository->findAllBut([$currentUser])->willReturn([$regularAdmin, $regularUser]);
 
         $this->getAdministrableUsers()->shouldReturn([$regularAdmin, $regularUser]);
+    }
+
+    function it_sets_role_to_a_user(
+        $entityManager,
+        $rolesManager,
+        UserInterface $user
+    ) {
+        $rolesManager->getChoices()->willReturn([
+            'ROLE_USER'   => 'ROLE_USER',
+            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_ADMIN'  => 'ROLE_ADMIN',
+        ]);
+
+        $user->setRoles(['ROLE_ADMIN'])->shouldBeCalled();
+        $entityManager->flush()->shouldBeCalled();
+
+        $this->setRole($user, ['roles' => 'ROLE_ADMIN']);
+    }
+
+    function it_throws_an_exception_if_role_is_not_in_choices_list(
+        $entityManager,
+        $rolesManager,
+        UserInterface $user
+    ) {
+        $rolesManager->getChoices()->willReturn([
+            'ROLE_USER'   => 'ROLE_USER',
+            'ROLE_EDITOR' => 'ROLE_EDITOR',
+        ]);
+
+        $user->setRoles([Argument::any()])->shouldNotBeCalled();
+        $entityManager->flush()->shouldNotBeCalled();
+
+        $this
+            ->shouldThrow(new InvalidArgumentException('Impossible to set role ROLE_ADMIN'))
+            ->during('setRole', [$user, ['roles' => 'ROLE_ADMIN']]);
     }
 }

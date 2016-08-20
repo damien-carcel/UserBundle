@@ -13,6 +13,7 @@ namespace spec\Carcel\Bundle\UserBundle\Form\Factory;
 
 use Carcel\Bundle\UserBundle\Form\Factory\UserFormFactory;
 use Carcel\Bundle\UserBundle\Form\Factory\UserFormFactoryInterface;
+use Carcel\Bundle\UserBundle\Manager\RolesManager;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -33,9 +34,10 @@ class UserFormFactorySpec extends ObjectBehavior
     function let(
         FormFactoryInterface $formFactory,
         RouterInterface $router,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        RolesManager $rolesManager
     ) {
-        $this->beConstructedWith($formFactory, $router, $translator);
+        $this->beConstructedWith($formFactory, $router, $translator, $rolesManager);
     }
 
     function it_is_initializable()
@@ -150,18 +152,28 @@ class UserFormFactorySpec extends ObjectBehavior
     function it_creates_a_form_to_set_users_role(
         $formFactory,
         $translator,
+        $rolesManager,
         FormBuilderInterface $builder,
         FormInterface $form
     ) {
         $formFactory->createBuilder()->willReturn($builder);
         $translator->trans('carcel_user.button.change')->willReturn('Change');
         $translator->trans('carcel_user.form.role.label')->willReturn('Roles');
+        $rolesManager->getChoices()->willReturn([
+            'ROLE_USER'        => 'ROLE_USER',
+            'ROLE_ADMIN'       => 'ROLE_ADMIN',
+            'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
+        ]);
 
         $builder
             ->add('roles', ChoiceType::class, [
-                'choices' => ['role1', 'role2', 'role3'],
+                'choices' => [
+                  'ROLE_USER'        => 'ROLE_USER',
+                  'ROLE_ADMIN'       => 'ROLE_ADMIN',
+                  'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
+                ],
                 'label'   => 'Roles',
-                'data'    => 'role1',
+                'data'    => 'ROLE_USER',
             ])
             ->willReturn($builder);
 
@@ -171,6 +183,6 @@ class UserFormFactorySpec extends ObjectBehavior
 
         $builder->getForm()->willReturn($form);
 
-        $this->createSetRoleForm(['role1', 'role2', 'role3'], 'role1');
+        $this->createSetRoleForm('ROLE_USER');
     }
 }

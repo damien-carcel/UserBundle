@@ -66,10 +66,9 @@ interface UserFormFactoryInterface
     /**
      * Creates a form to set user's roles.
      *
-     * @param array  $choices
      * @param string $currentRole
      *
      * @return FormInterface
      */
-    public function createSetRoleForm(array $choices, $currentRole);
+    public function createSetRoleForm($currentRole);
 }

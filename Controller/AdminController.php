@@ -74,19 +74,23 @@ class AdminController extends Controller
      */
     public function setRoleAction(Request $request, $username)
     {
-        $rolesManager = $this->get('carcel_user.manager.roles');
         $user = $this->findUserByUsernameOr404($username);
-        $userRole = $rolesManager->getUserRole($user);
-        $choices = $rolesManager->getChoices();
-        $form = $this->getUserFormFactory()->createSetRoleForm($choices, $userRole);
 
+        if (!$this->getUser()->isSuperAdmin() && $user->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $rolesManager = $this->get('carcel_user.manager.roles');
+        $userManager = $this->get('carcel_user.manager.users');
+
+        $userRole = $rolesManager->getUserRole($user);
+
+        $form = $this->getUserFormFactory()->createSetRoleForm($userRole);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $selectedRole = $form->getData();
-            $user->setRoles([$choices[$selectedRole['roles']]]);
-
-            $this->get('doctrine.orm.entity_manager')->flush();
+            $userManager->setRole($user, $selectedRole);
 
             $this->addFlash(
                 'notice',
