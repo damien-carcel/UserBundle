@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Global administration of the application users.
@@ -173,15 +174,16 @@ class AdminController extends Controller
      */
     public function removeUserAction(Request $request, $username)
     {
+        $user = $this->findUserByUsernameOr404($username);
         $form = $this->getUserFormFactory()->createDeleteForm($username, 'carcel_user_admin_remove');
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $user = $this->findUserByUsernameOr404($username);
             $email = $user->getEmail();
 
-            $this->get('doctrine.orm.entity_manager')->remove($user);
-            $this->get('doctrine.orm.entity_manager')->flush();
+            $entityManager = $this->get('doctrine.orm.entity_manager');
+            $entityManager->remove($user);
+            $entityManager->flush();
 
             $this->addFlash(
                 'notice',
@@ -196,16 +198,23 @@ class AdminController extends Controller
 
     /**
      * Finds and returns a User from its username.
+     * A regular administrator cannot get the super administrator, as he has no
+     * right to access its profile.
      *
      * @param string $username
      *
      * @throws NotFoundHttpException
+     * @throws AccessDeniedException
      *
      * @return UserInterface
      */
     protected function findUserByUsernameOr404($username)
     {
         $user = $this->getUserRepository()->findOneBy(['username' => $username]);
+
+        if (!$this->getUser()->isSuperAdmin() && $user->isSuperAdmin()) {
+            throw $this->createAccessDeniedException();
+        }
 
         if (null === $user) {
             throw new  NotFoundHttpException(
