@@ -3,4 +3,4 @@ suites:
         namespace: Carcel\Bundle\UserBundle
         psr4_prefix: Carcel\Bundle\UserBundle
         spec_path: ./
-        src_path: ./
+        src_path: ./src

@@ -35,13 +35,9 @@ tools:
                 - vendor/*
     php_loc:
         excluded_dirs:
-            - app/
             - bin/
             - vendor/
-            - web/
     php_pdepend:
         excluded_dirs:
-            - app/
             - bin/
             - vendor/
-            - web/
