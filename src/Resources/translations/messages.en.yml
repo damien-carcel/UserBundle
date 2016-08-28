@@ -1,5 +1,4 @@
 carcel_user:
-    account.remove: Account deletion
     admin:
         edit.title: Edit user %name% profile
         index:
@@ -26,8 +25,9 @@ carcel_user:
         email.label: Email address
         role.label: Roles
     mail:
-        content:
-            remove: |
+        remove:
+            subject: Account deletion
+            content: |
                 Hello %username%.
 
                 Your user account is now removed.

@@ -6,7 +6,6 @@ services:
         class: Carcel\Bundle\UserBundle\Manager\MailManager
         arguments:
             - '@mailer'
-            - '@templating'
             - '@translator'
             - '@carcel_user.factory.swift_message'
             - '%carcel_user_mailer_address%'

@@ -1,5 +1,4 @@
 carcel_user:
-    account.remove: Suppression de compte
     admin:
         edit.title: Édition du profil de l'utilisateur %name%
         index:
@@ -26,8 +25,9 @@ carcel_user:
         email.label: Adresse e-mail
         role.label: Roles
     mail:
-        content:
-            remove: |
+        remove:
+            subject: Suppression de compte
+            content: |
                 Bonjour %username%.
 
                 Votre compte utilisateur a été supprimée.

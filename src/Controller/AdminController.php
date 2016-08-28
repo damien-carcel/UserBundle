@@ -194,7 +194,12 @@ class AdminController extends Controller
                 $this->get('translator')->trans('carcel_user.notice.delete.label')
             );
 
-            $this->get('carcel_user.manager.mail')->send($email, $username);
+            $this->get('carcel_user.manager.mail')->send(
+                $email,
+                $username,
+                'carcel_user.remove.subject',
+                'carcel_user.mail.remove.content'
+            );
         }
 
         return $this->redirect($this->generateUrl('carcel_user_admin_index'));
