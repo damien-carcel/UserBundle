@@ -27,7 +27,7 @@ carcel_user:
     mail:
         remove:
             subject: Suppression de compte
-            content: |
+            body: |
                 Bonjour %username%.
 
                 Votre compte utilisateur a été supprimée.

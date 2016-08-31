@@ -40,11 +40,11 @@ class MailManagerSpec extends ObjectBehavior
         $messageFactory,
         \Swift_Message $message
     ) {
-        $messageFactory->create()->willReturn($message);
-        $translator->trans('carcel_user.remove.subject')->willReturn('Message subject');
+        $translator->trans('mail.subject')->willReturn('Message subject');
         $translator
-            ->trans('carcel_user.remove.content', ['username' => 'user name'])
+            ->trans('mail.body', ['%username%' => 'user name'])
             ->willReturn('Message body for user name');
+        $messageFactory->create()->willReturn($message);
 
         $message->setSubject('Message subject')->willReturn($message);
         $message->setFrom('noresponse@example.info')->willReturn($message);
@@ -53,6 +53,6 @@ class MailManagerSpec extends ObjectBehavior
 
         $mailer->send($message)->shouldBeCalled();
 
-        $this->send('user@exemple.info', 'user name', 'carcel_user.remove.subject', 'carcel_user.remove.content');
+        $this->send('user@exemple.info', 'user name', 'mail.subject', 'mail.body');
     }
 }

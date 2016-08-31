@@ -29,6 +29,7 @@ class CarcelUserExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('event_subscribers.yml');
         $loader->load('factories.yml');
         $loader->load('form_factories.yml');
         $loader->load('form_types.yml');

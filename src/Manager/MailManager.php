@@ -57,23 +57,24 @@ class MailManager
      * @param string $mailAddress
      * @param string $username
      * @param string $subject
-     * @param string $content
+     * @param string $body
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure
      */
-    public function send($mailAddress, $username, $subject, $content)
+    public function send($mailAddress, $username, $subject, $body)
     {
+        $subject = $this->translator->trans($subject);
+        $body = $this->translator->trans(
+            $body,
+            ['%username%' => $username]
+        );
+
         $message = $this->messageFactory->create();
         $message
-            ->setSubject($this->translator->trans($subject))
+            ->setSubject($subject)
             ->setFrom($this->mailerAddress)
             ->setTo($mailAddress)
-            ->setBody(
-                $this->translator->trans(
-                    $content,
-                    ['username' => $username]
-                )
-            );
+            ->setBody($body);
 
         return $this->mailer->send($message);
     }

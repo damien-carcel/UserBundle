@@ -11,10 +11,11 @@
 
 namespace Carcel\Bundle\UserBundle\Controller;
 
-use Carcel\Bundle\UserBundle\Entity\Repository\UserRepositoryInterface;
+use Carcel\Bundle\UserBundle\Event\UserEvents;
 use Carcel\Bundle\UserBundle\Form\Factory\UserFormFactoryInterface;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,7 +91,12 @@ class AdminController extends Controller
 
         if ($form->isValid()) {
             $selectedRole = $form->getData();
+
+            $this->get('event_dispatcher')->dispatch(UserEvents::PRE_SET_ROLE, new GenericEvent($user));
+
             $userManager->setRole($user, $selectedRole);
+
+            $this->get('event_dispatcher')->dispatch(UserEvents::POST_SET_ROLE, new GenericEvent($user));
 
             $this->addFlash(
                 'notice',
@@ -151,7 +157,11 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->get('event_dispatcher')->dispatch(UserEvents::PRE_UPDATE, new GenericEvent($user));
+
             $this->get('doctrine.orm.entity_manager')->flush();
+
+            $this->get('event_dispatcher')->dispatch(UserEvents::POST_UPDATE, new GenericEvent($user));
 
             $this->addFlash(
                 'notice',
@@ -183,22 +193,16 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $email = $user->getEmail();
+            $this->get('event_dispatcher')->dispatch(UserEvents::PRE_REMOVE, new GenericEvent($user));
 
-            $entityManager = $this->get('doctrine.orm.entity_manager');
-            $entityManager->remove($user);
-            $entityManager->flush();
+            $this->get('doctrine.orm.entity_manager')->remove($user);
+            $this->get('doctrine.orm.entity_manager')->flush();
+
+            $this->get('event_dispatcher')->dispatch(UserEvents::POST_REMOVE);
 
             $this->addFlash(
                 'notice',
                 $this->get('translator')->trans('carcel_user.notice.delete.label')
-            );
-
-            $this->get('carcel_user.manager.mail')->send(
-                $email,
-                $username,
-                'carcel_user.remove.subject',
-                'carcel_user.mail.remove.content'
             );
         }
 
@@ -219,7 +223,10 @@ class AdminController extends Controller
      */
     protected function findUserByUsernameOr404($username)
     {
-        $user = $this->getUserRepository()->findOneBy(['username' => $username]);
+        $user = $this
+            ->get('doctrine.orm.entity_manager')
+            ->getRepository('CarcelUserBundle:User')
+            ->findOneBy(['username' => $username]);
 
         if (!$this->getUser()->isSuperAdmin() && $user->isSuperAdmin()) {
             throw $this->createAccessDeniedException();
@@ -233,14 +240,6 @@ class AdminController extends Controller
         }
 
         return $user;
-    }
-
-    /**
-     * @return UserRepositoryInterface
-     */
-    protected function getUserRepository()
-    {
-        return $this->get('doctrine.orm.entity_manager')->getRepository('CarcelUserBundle:User');
     }
 
     /**

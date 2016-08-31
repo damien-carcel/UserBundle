@@ -27,7 +27,7 @@ carcel_user:
     mail:
         remove:
             subject: Account deletion
-            content: |
+            body: |
                 Hello %username%.
 
                 Your user account is now removed.

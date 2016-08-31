@@ -1,0 +1,7 @@
+services:
+    carcel_user.event.subscriber.mailer:
+        class: Carcel\Bundle\UserBundle\EventSubscriber\MailerSubscriber
+        arguments:
+            - '@carcel_user.manager.mail'
+        tags:
+            - { name: kernel.event_subscriber }
