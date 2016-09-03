@@ -233,10 +233,10 @@ class AdminController extends Controller
         }
 
         if (null === $user) {
-            throw new  NotFoundHttpException(
+            throw new  NotFoundHttpException(sprintf(
                 'The user with the name %username% does not exists',
-                ['%username%' => $username]
-            );
+                $username
+            ));
         }
 
         return $user;
