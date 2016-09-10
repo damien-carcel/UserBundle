@@ -106,6 +106,19 @@ fos_user:
     db_driver: orm
     firewall_name: main # This must be the firewall you define in the previous step, whatever the name you gave it
     user_class: Carcel\Bundle\UserBundle\Entity\User
+    
+    # The following is optional, add it only if you don't want new users to be activated by default
+    registration:
+        confirmation:
+            enabled:    true
+            from_email:
+                address:        noreply@your.domain
+                sender_name:    Darth Vader
+    resetting:
+        email:
+            from_email:
+                address:        noreply@your.domain
+                sender_name:    Darth Vader
 ```
 
 Then add the following parameters (don't forget to add it to your `app/config/parameters.yml.dist` file too):
