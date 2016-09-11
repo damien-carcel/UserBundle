@@ -20,6 +20,10 @@ carcel_user_admin_set_role:
     defaults: { _controller: CarcelUserBundle:Admin:setRole }
     methods:  [GET, POST, PUT]
 
+carcel_user_admin_change_status:
+    path: /{username}/status
+    defaults: { _controller: CarcelUserBundle:Admin:changeStatus }
+
 carcel_user_admin_remove:
     path: /{username}/delete
     defaults: { _controller: CarcelUserBundle:Admin:removeUser }

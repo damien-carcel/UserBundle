@@ -19,60 +19,70 @@ class UserEvents
     /**
      * This event is dispatched just before a user is updated.
      *
-     * The event listener receives a
-     * Symfony\Component\EventDispatcher\GenericEvent instance.
-     *
-     * @const string
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
      */
     const PRE_UPDATE = 'carcel_user.event.pre_update';
 
     /**
      * This event is dispatched just after a user is updated.
      *
-     * The event listener receives a
-     * Symfony\Component\EventDispatcher\GenericEvent instance.
-     *
-     * @const string
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
      */
     const POST_UPDATE = 'carcel_user.event.post_update';
 
     /**
      * This event is dispatched just before a user is removed.
      *
-     * The event listener receives a
-     * Symfony\Component\EventDispatcher\GenericEvent instance.
-     *
-     * @const string
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
      */
     const PRE_REMOVE = 'carcel_user.event.pre_remove';
 
     /**
      * This event is dispatched just after a user is removed.
      *
-     * The event listener receives a
-     * Symfony\Component\EventDispatcher\GenericEvent instance.
-     *
-     * @const string
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
      */
     const POST_REMOVE = 'carcel_user.event.post_remove';
 
     /**
      * This event is dispatched just before the role of a user is changed.
      *
-     * The event listener receives a
-     * Symfony\Component\EventDispatcher\GenericEvent instance.
-     *
-     * @const string
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
      */
     const PRE_SET_ROLE = 'carcel_user.event.pre_set_role';
 
     /**
      * This event is dispatched just after the role of a user is changed.
      *
-     * The event listener receives a
-     * Symfony\Component\EventDispatcher\GenericEvent instance.
-     *
-     * @const string
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
      */
     const POST_SET_ROLE = 'carcel_user.event.post_set_role';
+
+    /**
+     * This event is dispatched just after a user is activated.
+     *
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
+     */
+    const PRE_ACTIVATE = 'carcel_user.event.pre_activate';
+
+    /**
+     * This event is dispatched just after a user is activated.
+     *
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
+     */
+    const POST_ACTIVATE = 'carcel_user.event.post_activate';
+
+    /**
+     * This event is dispatched just after a user is deactivated.
+     *
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
+     */
+    const PRE_DEACTIVATE = 'carcel_user.event.pre_deactivate';
+
+    /**
+     * This event is dispatched just after a user is deactivated.
+     *
+     * @Event("Symfony\Component\EventDispatcher\GenericEvent"
+     */
+    const POST_DEACTIVATE = 'carcel_user.event.post_deactivate';
 }

@@ -66,56 +66,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Changes the user's role.
-     *
-     * @param Request $request
-     * @param string  $username
-     *
-     * @return RedirectResponse|Response
-     */
-    public function setRoleAction(Request $request, $username)
-    {
-        $user = $this->findUserByUsernameOr404($username);
-
-        if (!$this->getUser()->isSuperAdmin() && $user->hasRole('ROLE_ADMIN')) {
-            throw $this->createAccessDeniedException();
-        }
-
-        $rolesManager = $this->get('carcel_user.manager.roles');
-        $userManager = $this->get('carcel_user.manager.users');
-
-        $userRole = $rolesManager->getUserRole($user);
-
-        $form = $this->getUserFormFactory()->createSetRoleForm($userRole);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $selectedRole = $form->getData();
-
-            $this->get('event_dispatcher')->dispatch(UserEvents::PRE_SET_ROLE, new GenericEvent($user));
-
-            $userManager->setRole($user, $selectedRole);
-
-            $this->get('event_dispatcher')->dispatch(UserEvents::POST_SET_ROLE, new GenericEvent($user));
-
-            $this->addFlash(
-                'notice',
-                $this->get('translator')->trans('carcel_user.notice.set_role')
-            );
-
-            return $this->redirect($this->generateUrl('carcel_user_admin_index'));
-        }
-
-        return $this->render(
-            'CarcelUserBundle:Admin:set_role.html.twig',
-            [
-                'form'     => $form->createView(),
-                'username' => $user->getUsername(),
-            ]
-        );
-    }
-
-    /**
      * Displays a form to edit a user profile.
      *
      * @param string $username
@@ -175,6 +125,91 @@ class AdminController extends Controller
             'CarcelUserBundle:Admin:edit.html.twig',
             ['form' => $form->createView()]
         );
+    }
+
+    /**
+     * Changes the user's role.
+     *
+     * @param Request $request
+     * @param string  $username
+     *
+     * @throws AccessDeniedException
+     *
+     * @return RedirectResponse|Response
+     */
+    public function setRoleAction(Request $request, $username)
+    {
+        $user = $this->findUserByUsernameOr404($username);
+
+        if (!$this->getUser()->isSuperAdmin() && $user->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $rolesManager = $this->get('carcel_user.manager.roles');
+        $userManager = $this->get('carcel_user.manager.users');
+
+        $userRole = $rolesManager->getUserRole($user);
+
+        $form = $this->getUserFormFactory()->createSetRoleForm($userRole);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $selectedRole = $form->getData();
+
+            $this->get('event_dispatcher')->dispatch(UserEvents::PRE_SET_ROLE, new GenericEvent($user));
+
+            $userManager->setRole($user, $selectedRole);
+
+            $this->get('event_dispatcher')->dispatch(UserEvents::POST_SET_ROLE, new GenericEvent($user));
+
+            $this->addFlash(
+                'notice',
+                $this->get('translator')->trans('carcel_user.notice.set_role')
+            );
+
+            return $this->redirect($this->generateUrl('carcel_user_admin_index'));
+        }
+
+        return $this->render(
+            'CarcelUserBundle:Admin:set_role.html.twig',
+            [
+                'form'     => $form->createView(),
+                'username' => $user->getUsername(),
+            ]
+        );
+    }
+
+    /**
+     * Activates or deactivates a user.
+     *
+     * @param $username
+     *
+     * @throws AccessDeniedException
+     *
+     * @return RedirectResponse
+     */
+    public function changeStatusAction($username)
+    {
+        $user = $this->findUserByUsernameOr404($username);
+
+        if (!$this->getUser()->isSuperAdmin() && $user->hasRole('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        if ($user->isEnabled()) {
+            $this->get('carcel_user.handler.user_status')->disable($user);
+            $notice = 'carcel_user.notice.deactivated';
+        } else {
+            $this->get('carcel_user.handler.user_status')->enable($user);
+            $notice = 'carcel_user.notice.activated';
+        }
+
+        $this->addFlash(
+            'notice',
+            $this->get('translator')->trans($notice)
+        );
+
+        return $this->redirect($this->generateUrl('carcel_user_admin_index'));
     }
 
     /**

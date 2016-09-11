@@ -3,7 +3,9 @@ carcel_user:
         edit.title: Edit user %name% profile
         index:
             action: Action
+            activate: Activate
             change_role: Change role
+            deactivate: Deactivate
             edit: Edit
             list: List of the users
             name: Name
@@ -34,6 +36,8 @@ carcel_user:
 
                 Have a good day.
     notice:
+        activated: User has been activated
+        deactivated: User has been deactivated
         delete:
             confirmation: Are you sure?
             label: The user has been deleted

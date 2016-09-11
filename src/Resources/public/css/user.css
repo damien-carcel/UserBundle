@@ -15,3 +15,11 @@
 section {
     margin-bottom: 20px;
 }
+
+.user-list .button-inline {
+    display: inline-block;
+}
+
+.user-list .btn-change-status {
+    width: 82px;
+}
