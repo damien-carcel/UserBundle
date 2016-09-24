@@ -1,3 +1,6 @@
 services:
     carcel_user.factory.swift_message:
         class: Carcel\Bundle\UserBundle\Factory\SwiftMessageFactory
+
+    carcel_user.factory.redirect_response:
+        class: Carcel\Bundle\UserBundle\Factory\RedirectResponseFactory

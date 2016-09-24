@@ -11,7 +11,7 @@
 
 namespace Carcel\Bundle\UserBundle\Handler;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Carcel\Bundle\UserBundle\Factory\RedirectResponseFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 
@@ -22,6 +22,17 @@ use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
  */
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
+    /** @var RedirectResponseFactory */
+    protected $factory;
+
+    /**
+     * @param RedirectResponseFactory $factory
+     */
+    public function __construct(RedirectResponseFactory $factory)
+    {
+        $this->factory = $factory;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -30,9 +41,9 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
         $url = $request->headers->get('referer');
 
         if (null !== $url) {
-            return new RedirectResponse($url);
+            return $this->factory->create($url);
         }
 
-        return new RedirectResponse('/');
+        return $this->factory->create('/');
     }
 }
