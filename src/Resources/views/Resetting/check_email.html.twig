@@ -2,6 +2,6 @@
 
 {% block fos_user_content %}
     <div class="well text-center">
-        <p>{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}</p>
+        <p>{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'FOSUserBundle') }}</p>
     </div>
 {% endblock %}
