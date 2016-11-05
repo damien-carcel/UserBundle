@@ -4,7 +4,7 @@
     "type": "symfony-bundle",
     "description": "A ready to use UserBundle",
     "keywords": ["User management"],
-    "homepage": "https://github.com/damien-carcel/UserBundle",
+    "homepage": "https://github.com/damien-carcel/user-bundle-dev",
     "authors": [
         {
             "name": "Damien Carcel",
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Carcel\\Bundle\\UserBundle\\": "./src"
+            "Carcel\\Bundle\\UserBundle\\": "src"
         }
     },
     "require": {
@@ -38,7 +38,7 @@
     "minimum-stability": "stable",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1-dev"
+            "dev-master": "0.2-dev"
         }
     }
 }

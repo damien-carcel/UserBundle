@@ -10,174 +10,26 @@ It provides all the elements you need out of the box, yet let you the possibilit
 
 This bundle is build upon the [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle).
 
+## Contributing
+
 Please note this is a read-only repository. If you want to make a contribution (enhancement, bug-fix) or open an issue, please do so in the [development repository](https://github.com/damien-carcel/user-bundle-dev).
 
-# Installation and configuration
+## Requirements
 
-## Download using composer and activate the bundle
+- PHP 5.6+
+- PHP Modules:
+    - apcu
+    - curl
+    - gd
+    - intl
+    - mysql
+    - mcrypt
+- MySQL 5.1 and above or MariaDB
 
-Require the bundle
+## Installation and configuration
 
-```bash
-composer require friendsofsymfony/user-bundle "~2.0@dev"
-composer require carcel/user-bundle "dev-master"
-```
+Please follow carefully the steps described in the [installation section](./doc/install.md).
 
-Then enable it and the FOSUserBundle in the application kernel
+## License
 
-```php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = [
-        ...
-        new FOS\UserBundle\FOSUserBundle(),
-        new Carcel\Bundle\UserBundle\CarcelUserBundle(),
-    ];
-}
-```
-
-## Configure the application security
-
-Edit your `app/config/security.yml` as follow:
-
-```yaml
-security:
-    encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
-
-    providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
-
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-                use_referer: true
-                use_forward: true
-            logout:
-                path: fos_user_security_logout
-                target: /
-                success_handler: carcel_user.handler.logout_success_handler
-            anonymous: true
-            remember_me:
-                secret: '%secret%'
-
-    access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
-```
-
-Please refer to the [corresponding documentation](https://symfony.com/doc/master/bundles/FOSUserBundle/index.html#step-4-configure-your-application-s-security-yml) for more informations.
-
-## Configure the bundle
-
-Enable the translator:
-
-```yaml
-# app/config/config.yml
-
-parameters:
-    locale: en
-
-framework:
-    translator: { fallbacks: ["%locale%"] }
-```
-
-Then add the following lines to the application configuration:
-
-```yaml
-# app/config/config.yml
-
-fos_user:
-    db_driver: orm
-    firewall_name: main # This must be the firewall you define in the previous step, whatever the name you gave it
-    user_class: Carcel\Bundle\UserBundle\Entity\User
-    
-    # The following is optional, add it only if you don't want new users to be activated by default
-    registration:
-        confirmation:
-            enabled:    true
-            from_email:
-                address:        noreply@your.domain
-                sender_name:    Darth Vader
-    resetting:
-        email:
-            from_email:
-                address:        noreply@your.domain
-                sender_name:    Darth Vader
-```
-
-Then add the following parameters (don't forget to add it to your `app/config/parameters.yml.dist` file too):
-
-```yaml
-#app/config/parameters.yml
-
-carcel_user_mailer_address: your.address@your.domain
-```
-
-Finally, import the routing:
-
-```yaml
-# app/config/routing.yml
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
-carcel_user:
-    resource: "@CarcelUserBundle/Resources/config/routing.yml"
-    prefix: /
-
-# redirecting the root
-root:
-    path: /
-    defaults:
-        _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /
-        permanent: true
-```
-
-You should now be able to clear the application cache without any error.
-
-```bash
-bin/console cache:clear
-```
-
-## Update the database schema
-
-Run the following commands to create the database table and (optionally) populate it with minimal fixture set:
-
-```bash
-bin/console doctrine:schema:update --force
-bin/console doctrine:fixtures:load
-```
-
-## Deploy the assets
-
-Run the following command:
-
-```bash
-bin/console assets:install
-```
-
-Finally, copy the files `bower.json` and `.bowerrc` from the CarcelUserBundle to the root of your application, then run the following command to download and install JQuery and Bootstrap.
-
-```bash
-bower update
-```
-
-However, you can skip this step if you intend to customize the the bundle forms and not make use of Bootstrap and JQuery.
-
-You should now be able to display the login page (your.application.domain.name/login).
+This repository is under the MIT license. See the complete license in the `LICENSE` file.
