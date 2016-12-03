@@ -23,7 +23,7 @@
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "symfony/framework-bundle": "^3.0",
         "symfony/swiftmailer-bundle": "^2.3",
-        "friendsofsymfony/user-bundle": "^2.0@dev"
+        "friendsofsymfony/user-bundle": "v2.0.0-beta1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^1.11",
@@ -38,7 +38,7 @@
     "minimum-stability": "stable",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.2-dev"
+            "dev-master": "0.2.x-dev"
         }
     }
 }
