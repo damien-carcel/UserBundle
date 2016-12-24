@@ -21,7 +21,8 @@
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "symfony/framework-bundle": "^3.0",
+        "symfony/framework-bundle": "^3.2",
+        "symfony/translation": "^3.2",
         "symfony/swiftmailer-bundle": "^2.3",
         "friendsofsymfony/user-bundle": "v2.0.0-beta1"
     },
