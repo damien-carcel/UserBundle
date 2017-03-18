@@ -124,7 +124,7 @@ class RolesManager
      * considered as used by a super administrator.
      * Anonymous user, however, is not considered as a super administrator.
      *
-     * @return bool True if he is, false if not.
+     * @return bool true if he is, false if not
      */
     protected function isCurrentUserSuperAdmin()
     {

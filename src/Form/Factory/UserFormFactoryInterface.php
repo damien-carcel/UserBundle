@@ -24,7 +24,7 @@ interface UserFormFactoryInterface
     /**
      * Creates a form to create a new entity.
      *
-     * @param UserInterface $item The entity to create.
+     * @param UserInterface $item the entity to create
      * @param string        $type The form type to use with the entity
      * @param string        $url  The route used to create the entity
      *
@@ -35,9 +35,9 @@ interface UserFormFactoryInterface
     /**
      * Creates a form to edit an entity.
      *
-     * @param UserInterface $item The entity to edit.
+     * @param UserInterface $item the entity to edit
      * @param string        $type The form type to use with the entity
-     * @param string $url   The route used to edit the entity
+     * @param string        $url  The route used to edit the entity
      *
      * @return FormInterface
      */

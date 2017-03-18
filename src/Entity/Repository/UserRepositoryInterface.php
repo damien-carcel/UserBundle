@@ -24,7 +24,7 @@ interface UserRepositoryInterface extends ObjectRepository
     /**
      * Retrieves all users but one.
      *
-     * @param UserInterface[] $users The users we don\'t want to be returned.
+     * @param UserInterface[] $users the users we don\'t want to be returned
      *
      * @return UserInterface[]
      */

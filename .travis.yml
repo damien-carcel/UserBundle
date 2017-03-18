@@ -22,5 +22,5 @@ install:
     - composer update --prefer-dist --no-interaction --no-scripts
 
 script:
-    - ./bin/php-cs-fixer fix --dry-run -v --diff --config-file=.php_cs.php
+    - bin/php-cs-fixer fix --dry-run -v --diff --config=.php_cs.php
     - ./bin/phpspec run
