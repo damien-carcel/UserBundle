@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * Creates a new instance of RedirectResponse.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class RedirectResponseFactory
 {

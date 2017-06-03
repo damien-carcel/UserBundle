@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 
 /**
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class LogoutSuccessHandlerSpec extends ObjectBehavior
 {

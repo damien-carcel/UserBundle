@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User repository interface.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 interface UserRepositoryInterface extends ObjectRepository
 {

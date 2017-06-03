@@ -16,7 +16,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 /**
  * User entity.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class User extends BaseUser
 {

@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Create forms for User entity.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 interface UserFormFactoryInterface
 {

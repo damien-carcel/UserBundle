@@ -18,7 +18,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * User roles manager.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class RolesManager
 {

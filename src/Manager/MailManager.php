@@ -17,7 +17,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Mail manager.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class MailManager
 {

@@ -12,7 +12,7 @@
 namespace Carcel\Bundle\UserBundle\Event;
 
 /**
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class UserEvents
 {

@@ -17,7 +17,7 @@ use PhpSpec\ObjectBehavior;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class MailManagerSpec extends ObjectBehavior
 {

@@ -14,7 +14,7 @@ namespace Carcel\Bundle\UserBundle\Factory;
 /**
  * Creates a new instance of \Swift_Message.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class SwiftMessageFactory
 {

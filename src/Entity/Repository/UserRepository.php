@@ -16,7 +16,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * User repository.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 class UserRepository extends EntityRepository implements UserRepositoryInterface
 {

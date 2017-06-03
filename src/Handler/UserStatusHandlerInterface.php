@@ -16,7 +16,7 @@ use FOS\UserBundle\Model\UserInterface;
 /**
  * Handles a user status enabled/disabled.
  *
- * @author Damien Carcel (damien.carcel@gmail.com)
+ * @author Damien Carcel <damien.carcel@gmail.com>
  */
 interface UserStatusHandlerInterface
 {
