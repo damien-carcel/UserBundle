@@ -26,5 +26,6 @@ return PhpCsFixer\Config::create()
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->name('*.php')
+            ->in(__DIR__.'/features')
             ->in(__DIR__.'/src')
     );

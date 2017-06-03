@@ -13,7 +13,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Carcel\\Bundle\\UserBundle\\": "src"
+            "Carcel\\Bundle\\UserBundle\\": "src",
+            "Context\\": "features/bootstrap"
         }
     },
     "require": {
