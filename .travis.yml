@@ -22,4 +22,4 @@ install:
 script:
     - bin/phpcs -p --standard=PSR2 --extensions=php src
     - bin/php-cs-fixer fix --dry-run -v --diff --config=.php_cs.php
-    - ./bin/phpspec run
+    - bin/phpspec run

@@ -95,7 +95,7 @@ class UserManagerSpec extends ObjectBehavior
     ) {
         $rolesManager->getChoices()->willReturn([
             'ROLE_USER'   => 'ROLE_USER',
-            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_VIEWER' => 'ROLE_VIEWER',
             'ROLE_ADMIN'  => 'ROLE_ADMIN',
         ]);
 
@@ -112,7 +112,7 @@ class UserManagerSpec extends ObjectBehavior
     ) {
         $rolesManager->getChoices()->willReturn([
             'ROLE_USER'   => 'ROLE_USER',
-            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_VIEWER' => 'ROLE_VIEWER',
         ]);
 
         $user->setRoles([Argument::any()])->shouldNotBeCalled();

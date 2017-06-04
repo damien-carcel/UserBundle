@@ -14,16 +14,16 @@ Feature: Change users roles
   Scenario: I can change a user role
     Given I am on "admin"
     When I follow "Change role" for "damien" profile
-    And I select "Editor" from "Roles"
+    And I select "Viewer" from "Roles"
     And I press "Change"
     Then I should see "User role has been changed"
-    And user "damien" should have role "ROLE_EDITOR"
+    And user "damien" should have role "ROLE_VIEWER"
 
   Scenario: I cannot promote a user as administrator
     Given I am on "admin"
     When I follow "Change role" for "damien" profile
     Then I should see "Base user" in the "select" element
-    And I should see "Editor" in the "select" element
+    And I should see "Viewer" in the "select" element
     But I should not see "Administrator" in the "select" element
     And I should not see "Super administrator" in the "select" element
 
