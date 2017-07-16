@@ -19,10 +19,10 @@
     },
     "require": {
         "php": ">=7.1",
-        "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "friendsofsymfony/user-bundle": "v2.0.0-beta2",
+        "doctrine/orm": "^2.5",
+        "friendsofsymfony/user-bundle": "^2.0",
         "symfony/framework-bundle": "^3.0",
         "symfony/translation": "^3.0",
         "twig/twig": "^1.0||^2.0",
@@ -36,7 +36,7 @@
         "squizlabs/php_codesniffer": "^2.5"
     },
     "config": {
-        "bin-dir": "bin",
+        "bin-dir": "vendor/bin",
         "platform": {
             "php": "7.1"
         },

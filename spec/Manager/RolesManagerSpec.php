@@ -29,8 +29,8 @@ class RolesManagerSpec extends ObjectBehavior
             $tokenStorage,
             $translator,
             [
-                'ROLE_EDITOR'      => ['ROLE_USER'],
-                'ROLE_ADMIN'       => ['ROLE_EDITOR'],
+                'ROLE_VIEWER'      => ['ROLE_USER'],
+                'ROLE_ADMIN'       => ['ROLE_VIEWER'],
                 'ROLE_SUPER_ADMIN' => ['ROLE_ADMIN'],
             ]
         );
@@ -52,7 +52,7 @@ class RolesManagerSpec extends ObjectBehavior
 
         $this->getChoices()->shouldReturn([
             'ROLE_USER'   => 'ROLE_USER',
-            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_VIEWER' => 'ROLE_VIEWER',
             'ROLE_ADMIN'  => 'ROLE_ADMIN',
         ]);
     }
@@ -68,7 +68,7 @@ class RolesManagerSpec extends ObjectBehavior
 
         $this->getChoices()->shouldReturn([
             'ROLE_USER'   => 'ROLE_USER',
-            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_VIEWER' => 'ROLE_VIEWER',
         ]);
     }
 
@@ -79,7 +79,7 @@ class RolesManagerSpec extends ObjectBehavior
 
         $this->getChoices()->shouldReturn([
             'ROLE_USER'   => 'ROLE_USER',
-            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_VIEWER' => 'ROLE_VIEWER',
         ]);
     }
 
@@ -89,7 +89,7 @@ class RolesManagerSpec extends ObjectBehavior
 
         $this->getChoices()->shouldReturn([
             'ROLE_USER'   => 'ROLE_USER',
-            'ROLE_EDITOR' => 'ROLE_EDITOR',
+            'ROLE_VIEWER' => 'ROLE_VIEWER',
             'ROLE_ADMIN'  => 'ROLE_ADMIN',
         ]);
     }

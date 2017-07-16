@@ -17,4 +17,4 @@ default:
                 - Context\UserBundleFeatureContext:
                     session: '@session'
             paths:
-                - '%paths.base%/vendor/carcel/UserBundle/features'
+                - '%paths.base%/vendor/carcel/user-bundle/features'
