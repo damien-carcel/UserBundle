@@ -1,3 +1,9 @@
+# 0.2.2 (2017-07-23)
+
+## Enhancements
+
+- **Issue 75**: Install and use bower locally through npm.
+
 # 0.2.1 (2017-06-04)
 
 ## Enhancements
