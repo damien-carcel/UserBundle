@@ -23,4 +23,5 @@ Feature: Manage user accounts
     And I fill in "Username" with "damien"
     And I fill in "Password" with "damien"
     When I press "Log in"
+    And I am on "admin/"
     Then I should see "403 Forbidden"
