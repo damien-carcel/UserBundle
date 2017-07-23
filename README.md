@@ -1,5 +1,6 @@
 # CarcelUserBundle
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bb2956c2-e172-4169-baf7-2f59c74400cd/mini.png)](https://insight.sensiolabs.com/projects/bb2956c2-e172-4169-baf7-2f59c74400cd)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/badges/quality-score.png?b=0.2)](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/?branch=0.2)
 [![Build Status](https://travis-ci.org/damien-carcel/UserBundle.svg?branch=0.2)](https://travis-ci.org/damien-carcel/UserBundle)
 
@@ -15,7 +16,7 @@ Please note this is a read-only repository. If you want to make a contribution (
 
 ## Requirements
 
-- PHP 5.6+
+- PHP 7.1+
 - PHP Modules:
     - apcu
     - curl
@@ -23,7 +24,7 @@ Please note this is a read-only repository. If you want to make a contribution (
     - intl
     - mysql
     - mcrypt
-- MySQL 5.1 and above or MariaDB
+- MySQL or MariaDB
 
 ## Installation and configuration
 
