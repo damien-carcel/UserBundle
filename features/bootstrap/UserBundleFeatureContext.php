@@ -19,6 +19,7 @@ use Behat\Symfony2Extension\Driver\KernelDriver;
 use Carcel\Bundle\UserBundle\Entity\Repository\UserRepositoryInterface;
 use Carcel\Bundle\UserBundle\Manager\UserManager;
 use FOS\UserBundle\Model\UserManagerInterface;
+use PHPUnit\Framework\Assert;
 use Symfony\Component\BrowserKit\Client;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -72,7 +73,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
             throw new TokenNotFoundException();
         }
 
-        \PHPUnit_Framework_Assert::assertEquals($token->getUsername(), $username);
+        Assert::assertEquals($token->getUsername(), $username);
     }
 
     /**
@@ -85,8 +86,8 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
     {
         $checker = $this->getAuthorizationChecker();
 
-        \PHPUnit_Framework_Assert::assertTrue($checker->isGranted('IS_AUTHENTICATED_ANONYMOUSLY'));
-        \PHPUnit_Framework_Assert::assertFalse($checker->isGranted('ROLE_USER'));
+        Assert::assertTrue($checker->isGranted('IS_AUTHENTICATED_ANONYMOUSLY'));
+        Assert::assertFalse($checker->isGranted('ROLE_USER'));
     }
 
     /**
@@ -124,7 +125,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
         }
         sort($userNames);
 
-        \PHPUnit_Framework_Assert::assertEquals($providedUserNames, $userNames);
+        Assert::assertEquals($providedUserNames, $userNames);
     }
 
     /**
@@ -142,7 +143,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
         $row = $this->findUserRowByText($username);
         $link = $row->findLink($action);
 
-        \PHPUnit_Framework_Assert::assertNotNull($link, 'Cannot find link in row with text '.$action);
+        Assert::assertNotNull($link, 'Cannot find link in row with text '.$action);
         $link->click();
     }
 
@@ -161,7 +162,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
         $row = $this->findUserRowByText($username);
         $button = $row->findButton($action);
 
-        \PHPUnit_Framework_Assert::assertNotNull($button, 'Cannot find button in row with text '.$action);
+        Assert::assertNotNull($button, 'Cannot find button in row with text '.$action);
         $button->press();
     }
 
@@ -176,7 +177,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
     public function userShouldHaveRole($username, $role)
     {
         $user = $this->getUserRepository()->findOneBy(['username' => $username]);
-        \PHPUnit_Framework_Assert::assertTrue($user->hasRole($role));
+        Assert::assertTrue($user->hasRole($role));
     }
 
     /**
@@ -205,12 +206,12 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
     {
         $collector = $this->getSymfonyProfile()->getCollector('swiftmailer');
 
-        \PHPUnit_Framework_Assert::assertEquals(1, $collector->getMessageCount());
+        Assert::assertEquals(1, $collector->getMessageCount());
 
         $messages = $collector->getMessages();
         $message = $messages[0];
 
-        \PHPUnit_Framework_Assert::assertEquals($subject, $message->getSubject());
+        Assert::assertEquals($subject, $message->getSubject());
     }
 
     /**
@@ -282,7 +283,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
     {
         $user = $this->getUserRepository()->findOneBy(['username' => $username]);
 
-        \PHPUnit_Framework_Assert::assertTrue($status === $user->isEnabled());
+        Assert::assertTrue($status === $user->isEnabled());
     }
 
     /**
@@ -334,7 +335,7 @@ class UserBundleFeatureContext extends MinkContext implements KernelAwareContext
     {
         $row = $this->getSession()->getPage()->find('css', sprintf('table tr:contains("%s")', $username));
 
-        \PHPUnit_Framework_Assert::assertNotNull($row, 'Cannot find a table row with username '.$username);
+        Assert::assertNotNull($row, 'Cannot find a table row with username '.$username);
 
         return $row;
     }
