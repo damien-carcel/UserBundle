@@ -23,6 +23,6 @@ class SwiftMessageFactory
      */
     public function create()
     {
-        return \Swift_Message::newInstance();
+        return new \Swift_Message();
     }
 }
