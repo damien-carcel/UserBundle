@@ -104,8 +104,8 @@ class UserFormFactory implements UserFormFactoryInterface
             SubmitType::class,
             [
                 'label' => $this->translator->trans('carcel_user.button.delete'),
-                'attr'  => [
-                    'class'   => 'btn btn-sm btn-default',
+                'attr' => [
+                    'class' => 'btn btn-sm btn-default',
                     'onclick' => sprintf(
                         'return confirm("%s")',
                         $this->translator->trans('carcel_user.notice.delete.confirmation')
@@ -143,8 +143,8 @@ class UserFormFactory implements UserFormFactoryInterface
                 ChoiceType::class,
                 [
                     'choices' => $this->rolesManager->getChoices(),
-                    'label'   => $this->translator->trans('carcel_user.form.role.label'),
-                    'data'    => $currentRole,
+                    'label' => $this->translator->trans('carcel_user.form.role.label'),
+                    'data' => $currentRole,
                 ]
             )
             ->add('submit', SubmitType::class, ['label' => $this->translator->trans('carcel_user.button.change')])

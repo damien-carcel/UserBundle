@@ -42,7 +42,7 @@ class AdminController extends Controller
         return $this->render(
             'CarcelUserBundle:Admin:index.html.twig',
             [
-                'users'        => $users,
+                'users' => $users,
                 'delete_forms' => $deleteForms,
             ]
         );
@@ -173,7 +173,7 @@ class AdminController extends Controller
         return $this->render(
             'CarcelUserBundle:Admin:set_role.html.twig',
             [
-                'form'     => $form->createView(),
+                'form' => $form->createView(),
                 'username' => $user->getUsername(),
             ]
         );

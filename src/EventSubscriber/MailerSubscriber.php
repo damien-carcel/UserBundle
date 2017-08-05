@@ -47,7 +47,7 @@ class MailerSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            UserEvents::PRE_REMOVE  => 'getUserEmail',
+            UserEvents::PRE_REMOVE => 'getUserEmail',
             UserEvents::POST_REMOVE => 'sendMessage',
         ];
     }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Context;
+namespace UserBundleContext;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\DriverException;
