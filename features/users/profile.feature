@@ -55,8 +55,8 @@ Feature: Manage a user account
       | Username | damien  |
       | Password | pandore |
     And I press "Log in"
-    And I am on "profile/"
-    Then I should see "Username: damien"
+    Then I should be on "profile/"
+    And I should see "Username: damien"
 
   Scenario: I cannot change my password without knowing it
     Given I am on "profile/"
