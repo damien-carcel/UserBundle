@@ -5,7 +5,6 @@
 Require the bundle
 
 ```bash
-composer require friendsofsymfony/user-bundle "~2.0@dev"
 composer require carcel/user-bundle
 ```
 

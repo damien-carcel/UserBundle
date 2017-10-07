@@ -1,0 +1,9 @@
+{
+    "bundles": {
+        "FOS\\UserBundle\\FOSUserBundle()": ["all"],
+        "Doctrine\\Bundle\\FixturesBundle\\DoctrineFixturesBundle()": ["all"]
+    },
+    "container": {
+        "locale": "en"
+    }
+}
