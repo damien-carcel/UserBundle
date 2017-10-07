@@ -18,14 +18,16 @@
         }
     },
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "^2.0",
-        "symfony/framework-bundle": "^3.0",
+        "symfony/asset": "^3.3",
+        "symfony/framework-bundle": "^3.3",
         "symfony/swiftmailer-bundle": "^3.0",
-        "symfony/translation": "^3.0",
+        "symfony/translation": "^3.3",
+        "symfony/validator": "^3.3",
         "twig/twig": "^2.0"
     },
     "require-dev": {
@@ -37,9 +39,6 @@
     },
     "config": {
         "bin-dir": "vendor/bin",
-        "platform": {
-            "php": "7.1"
-        },
         "sort-packages": true
     },
     "minimum-stability": "stable",

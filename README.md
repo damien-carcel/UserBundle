@@ -4,7 +4,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/?branch=master)
 [![Build Status](https://travis-ci.org/damien-carcel/UserBundle.svg?branch=master)](https://travis-ci.org/damien-carcel/UserBundle)
 
-CarcelUserBundle is a ready to use user management system for Symfony 3 applications, using Doctrine ORM for database storage.
+CarcelUserBundle is a ready to use user management system for Symfony applications (starting Symfony 3.3), using Doctrine ORM for database storage.
 
 It provides all the elements you need out of the box, yet let you the possibility to customize it at your liking.
 
@@ -12,11 +12,14 @@ This bundle is build upon the [FOSUserBundle](https://github.com/FriendsOfSymfon
 
 ## Contributing
 
-Please note this is a read-only repository. If you want to make a contribution (enhancement, bug-fix) or open an issue, please do so in the [development repository](https://github.com/damien-carcel/user-bundle-dev).
+There is still much to do for this bundle. Please have a look at the [list of issues](https://github.com/damien-carcel/UserBundle/issues).
+If you are interested by an issue, don't hesitate to leave a comment to take contact.
+
+If you encountered a bug or miss a functionality, don't hesitate to raise an issue, but please make sure there is not already a similar one.
 
 ## Requirements
 
-- PHP 5.6+
+- PHP >= 7.0
 - PHP Modules:
     - apcu
     - curl
