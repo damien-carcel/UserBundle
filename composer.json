@@ -14,13 +14,12 @@
     "autoload": {
         "psr-4": {
             "Carcel\\Bundle\\UserBundle\\": "src",
-            "UserBundleContext\\": "features/bootstrap"
+            "UserBundleContext\\": "features/Context"
         }
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/doctrine-fixtures-bundle": "^2.3",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "^2.0",
         "symfony/asset": "^3.3",
@@ -31,6 +30,7 @@
         "twig/twig": "^2.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
         "friendsofphp/php-cs-fixer": "^2.0",
         "phpmd/phpmd": "^2.4",
         "phpspec/phpspec": "^4.0",

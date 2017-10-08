@@ -4,3 +4,10 @@ fos_user:
 carcel_user:
     resource: "@CarcelUserBundle/Resources/config/routing.yml"
     prefix: /
+
+root:
+    path: /
+    defaults:
+        _controller: 'FrameworkBundle:Redirect:urlRedirect'
+        path: /
+        permanent: true

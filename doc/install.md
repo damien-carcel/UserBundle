@@ -1,30 +1,18 @@
 # Installation and configuration
 
-The following instructions only works if using Symfony Flex.
-
 ## Download using composer and activate the bundle
 
 Require the bundle
 
 ```bash
-composer require carcel/user-bundle --no-scripts
+composer require carcel/user-bundle
 ```
 
 ## Configure the bundle
 
-- Copy the files present in `vendor/carcel/user-bundle/config/packages/` into `config/packages/`.
-- Add the routes present in `vendor/carcel/user-bundle/config/routes.yaml` into `config/routes.yaml`
-- Add the following environment variable to `.env`: `MAILER_USER="your.email@address.com"`
-- Run `composer auto-scripts`
-
-## Update the database schema
-
-Run the following commands to create the database table and (optionally) populate it with minimal fixture set:
-
-```bash
-bin/console doctrine:schema:update --force
-bin/console doctrine:fixtures:load
-```
+- Copy the content of  `vendor/carcel/user-bundle/config/fos_user.yaml` into `app/config/config.yml`.
+- Copy the content of  `vendor/carcel/user-bundle/config/security.yaml` into `app/config/security.yml`.
+- Add the routes present in `vendor/carcel/user-bundle/config/routes.yaml` into `app/config/routes.yaml`
 
 ## Deploy the assets
 
@@ -35,6 +23,15 @@ bower update
 ```
 
 However, you can skip this step if you intend to customize the the bundle forms and not make use of Bootstrap and JQuery.
+
+## Update the database schema
+
+Run the following commands to create the database table and (optionally) populate it with minimal fixture set:
+
+```bash
+bin/console doctrine:schema:update --force
+bin/console doctrine:fixtures:load
+```
 
 ## Run the application
 
