@@ -26,11 +26,11 @@ However, you can skip this step if you intend to customize the the bundle forms 
 
 ## Update the database schema
 
-Run the following commands to create the database table and (optionally) populate it with minimal fixture set:
+Run the following commands to create the database table and create an admin user:
 
 ```bash
 bin/console doctrine:schema:update --force
-bin/console doctrine:fixtures:load
+bin/console fos:user:create admin --super-admin
 ```
 
 ## Run the application
@@ -38,7 +38,7 @@ bin/console doctrine:fixtures:load
 The application is now ready to run. You can either configure a HTTP server of your choice (Apache, nginx…) or use the Symfony internal server:
 
 ```bash
-make serve
+bin/console server:run
 ```
 
 You should now be able to display the login page (`localhost:8000/login` if using the Symfony server).

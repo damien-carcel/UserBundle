@@ -10,11 +10,11 @@ default:
             autoload: false
             directories: ~
             fixtures:
-                - Carcel\Bundle\UserBundle\DataFixtures\ORM\LoadUserData
+                - UserBundleContext\DataFixtures\ORM\LoadUserData
     suites:
         default:
             contexts:
-                - Context\UserBundleFeatureContext:
+                - UserBundleContext\UserBundleFeatureContext:
                     session: '@session'
             paths:
                 - '%paths.base%/vendor/carcel/user-bundle/features'

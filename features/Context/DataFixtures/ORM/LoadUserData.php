@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Carcel\Bundle\UserBundle\DataFixtures\ORM;
+namespace UserBundleContext\DataFixtures\ORM;
 
 use Carcel\Bundle\UserBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
