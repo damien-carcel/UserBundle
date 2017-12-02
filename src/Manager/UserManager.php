@@ -14,8 +14,8 @@ namespace Carcel\Bundle\UserBundle\Manager;
 use Carcel\Bundle\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserInterface;
-use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Validator\Exception\InvalidArgumentException;
 
 /**
  * User manager.

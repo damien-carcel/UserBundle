@@ -1,3 +1,0 @@
-carcel_user_admin:
-    resource: '@CarcelUserBundle/Resources/config/routing/admin.yml'
-    prefix: /admin

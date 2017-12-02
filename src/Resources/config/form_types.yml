@@ -1,8 +1,0 @@
-services:
-    carcel_user.form.type.user:
-        class: Carcel\Bundle\UserBundle\Form\Type\UserType
-        arguments:
-            - '@translator'
-            - Carcel\Bundle\UserBundle\Entity\User
-        tags:
-            - { name: form.type }

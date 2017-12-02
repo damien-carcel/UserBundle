@@ -1,31 +1,4 @@
 carcel_user:
-    admin:
-        edit.title: Edit user %name% profile
-        index:
-            action: Action
-            activate: Activate
-            change_role: Change role
-            deactivate: Deactivate
-            edit: Edit
-            list: List of the users
-            name: Name
-            role: Role
-            title: Administration of the users
-            view: View
-        footer_link: Administration page
-        set_role.title: Change user %name% role
-        show.title: '%name% user profile'
-    button:
-        back: Back
-        change: Change
-        delete: Delete
-        update: Update
-    change_password:
-        title: Change user %name% password
-    form:
-        name.label: User name
-        email.label: Email address
-        role.label: Roles
     mail:
         remove:
             subject: Account deletion
@@ -35,23 +8,6 @@ carcel_user:
                 Your user account is now removed.
 
                 Have a good day.
-    notice:
-        activated: User has been activated
-        deactivated: User has been deactivated
-        delete:
-            confirmation: Are you sure?
-            label: The user has been deleted
-        set_role: User role has been changed
-        update: User profile has been updated
-    profile:
-        show: '%username% user profile'
-        edit: Edit %username% user profile
-        edit.link: Edit profile
-        password.link: Change password
-    security:
-        forgotten_password: Forgotten password?
-        new_user: New user
-        no_role: Sorry, your acount has no role for the moment. Wait for a confirmation mail.
 
 ROLE_USER: Base user
 ROLE_ADMIN: Administrator
