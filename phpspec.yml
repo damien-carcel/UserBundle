@@ -1,6 +1,6 @@
 suites:
-    UserBundle:
+    user-bundle:
         namespace: Carcel\Bundle\UserBundle
         psr4_prefix: Carcel\Bundle\UserBundle
-        spec_path: ./
-        src_path: ./src
+        src_path: src
+        spec_path: tests

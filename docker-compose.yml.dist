@@ -15,8 +15,6 @@ services:
       - ~/.cache/composer:/home/docker/.cache/composer
       - ~/.config/composer:/home/docker/.config/composer
     working_dir: /home/docker/user-bundle
-    networks:
-      - user-bundle
 
   mysql:
     image: mysql:5.7
@@ -27,8 +25,3 @@ services:
       - MYSQL_DATABASE=user_bundle
     ports:
       - '3306:3306'
-    networks:
-      - user-bundle
-
-networks:
-  user-bundle: ~

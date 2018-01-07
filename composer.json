@@ -4,7 +4,7 @@
     "type": "symfony-bundle",
     "description": "A ready to use UserBundle",
     "keywords": ["User management"],
-    "homepage": "https://github.com/damien-carcel/user-bundle-dev",
+    "homepage": "https://github.com/damien-carcel/UserBundle",
     "authors": [
         {
             "name": "Damien Carcel",
@@ -13,26 +13,30 @@
     ],
     "autoload": {
         "psr-4": {
-            "Carcel\\Bundle\\UserBundle\\": "src",
-            "UserBundleContext\\": "features/Context"
+            "Carcel\\Bundle\\UserBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Carcel\\Bundle\\UserBundle\\Tests\\": "tests/",
+            "Carcel\\Bundle\\UserBundle\\Tests\\Acceptance\\": "tests/acceptance/",
+            "Carcel\\Bundle\\UserBundle\\Tests\\Integration\\": "tests/integration/"
         }
     },
     "require": {
         "php": ">=7.1",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "^2.0",
-        "symfony/framework-bundle": "^3.4",
-        "symfony/security": "^3.4",
-        "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "^3.4",
-        "symfony/validator": "^3.4"
+        "swiftmailer/swiftmailer": "^6.0",
+        "symfony/http-foundation": "^4.0",
+        "symfony/security": "^4.0",
+        "symfony/validator": "^4.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "behat/behat": "^3.4",
         "friendsofphp/php-cs-fixer": "^2.0",
         "phpmd/phpmd": "^2.4",
         "phpspec/phpspec": "^4.0",
-        "phpunit/phpunit": "^6.0",
         "squizlabs/php_codesniffer": "^3.0"
     },
     "config": {

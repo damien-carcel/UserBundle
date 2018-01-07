@@ -1,5 +1,5 @@
 /vendor
-/bin
+behat.yml
 composer.lock
 docker-compose.yml
 .php_cs.cache
