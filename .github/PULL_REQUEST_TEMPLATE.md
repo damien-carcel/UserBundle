@@ -12,8 +12,9 @@
 
 | Q                                 | A
 | --------------------------------- | ---
-| Added Specs                       | Todo
-| Added Behats                      | Todo
+| Added Acceptance tests            | Todo
+| Added Integration tests           | Todo
+| Added Unit tests                  | Todo
 | Changelog updated                 | Todo
 | Migration script                  | -
 | Documentation                     | -
