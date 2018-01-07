@@ -29,4 +29,6 @@ return PhpCsFixer\Config::create()
         PhpCsFixer\Finder::create()
             ->name('*.php')
             ->in(__DIR__ . '/src')
+            ->in(__DIR__ . '/tests/acceptance')
+            ->in(__DIR__ . '/tests/integration')
     );

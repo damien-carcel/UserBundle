@@ -16,6 +16,13 @@
             "Carcel\\Bundle\\UserBundle\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Carcel\\Bundle\\UserBundle\\Tests\\": "tests/",
+            "Carcel\\Bundle\\UserBundle\\Tests\\Acceptance\\": "tests/acceptance/",
+            "Carcel\\Bundle\\UserBundle\\Tests\\Integration\\": "tests/integration/"
+        }
+    },
     "require": {
         "php": ">=7.1",
         "doctrine/orm": "^2.5",
@@ -26,6 +33,7 @@
         "symfony/validator": "^4.0"
     },
     "require-dev": {
+        "behat/behat": "^3.4",
         "friendsofphp/php-cs-fixer": "^2.0",
         "phpmd/phpmd": "^2.4",
         "phpspec/phpspec": "^4.0",

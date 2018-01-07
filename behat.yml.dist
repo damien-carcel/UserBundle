@@ -1,0 +1,12 @@
+default:
+    suites:
+        acceptance:
+            paths:
+                - '%paths.base%/tests/acceptance/features'
+            contexts:
+                - Carcel\Bundle\UserBundle\Tests\Acceptance\Context\FeatureContext: ~
+        integration:
+            paths:
+                - '%paths.base%/tests/integration/features'
+            contexts:
+                - Carcel\Bundle\UserBundle\Tests\Integration\Context\FeatureContext: ~
