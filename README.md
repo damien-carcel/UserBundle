@@ -1,8 +1,7 @@
 # CarcelUserBundle
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bb2956c2-e172-4169-baf7-2f59c74400cd/mini.png)](https://insight.sensiolabs.com/projects/bb2956c2-e172-4169-baf7-2f59c74400cd)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/?branch=master)
 [![Build Status](https://travis-ci.org/damien-carcel/UserBundle.svg?branch=master)](https://travis-ci.org/damien-carcel/UserBundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/?branch=master)
 
 CarcelUserBundle is a ready to use user management system for **Symfony 4** applications, using **Doctrine ORM** for database storage.
 
