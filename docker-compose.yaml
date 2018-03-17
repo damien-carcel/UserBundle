@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  php:
+    image: 'akeneo/php:${TAG}'
+    environment:
+      COMPOSER_CACHE_DIR: '/home/docker/.cache/composer'
+      COMPOSER_HOME: '/home/docker/.config/composer'
+      PHP_IDE_CONFIG: 'serverName=${SERVER_KEY}'
+      PHP_XDEBUG_ENABLED: '${XDEBUG_IS_ACTIVATED}'
+      XDEBUG_CONFIG: 'remote_host=${HOST_IP}'
+    user: '${CONTAINER_USER}:${CONTAINER_GROUP}'
+    volumes:
+      - './:/srv/user-bundle'
+      - '${COMPOSER_HOST_CACHE}:/home/docker/.cache/composer'
+      - '${COMPOSER_HOST_HOME}:/home/docker/.config/composer'
+    working_dir: '/srv/user-bundle'
+
+  mysql:
+    image: 'mysql:5.7'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'user_bundle'
+      MYSQL_PASSWORD: 'user_bundle'
+      MYSQL_DATABASE: 'user_bundle'
+    ports:
+      - '${MYSQL_OUTPUT_PORT}:3306'

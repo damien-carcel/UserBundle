@@ -17,7 +17,7 @@ before_install:
     - composer self-update --no-interaction
 
 install:
-    - composer update --prefer-dist --no-interaction --no-scripts
+    - composer update --prefer-dist --optimize-autoloader
 
 script:
     - vendor/bin/phpcs -p --standard=PSR2 --extensions=php src
