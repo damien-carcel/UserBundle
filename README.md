@@ -1,4 +1,4 @@
-# CarcelUserBundle
+# [DEPRECATED] CarcelUserBundle
 
 [![Build Status](https://travis-ci.org/damien-carcel/UserBundle.svg?branch=master)](https://travis-ci.org/damien-carcel/UserBundle)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/damien-carcel/UserBundle/?branch=master)
